@@ -1,0 +1,12 @@
+<div fxFlex style="margin: 10px;">
+    <mat-grid-list cols="4" rowHeight="300px">
+      <mat-grid-tile *ngFor="let product of products" [routerLink]="['/detail',product.id]">
+        <img mat-card-image src="../../assets/images/{{product.filename}}" alt="../../assets/images/{{product.filename}}">
+        <mat-grid-tile-footer>
+            {{product.title}}
+          <span class="example-spacer"></span>
+            Price: ${{product.price}}
+        </mat-grid-tile-footer>
+    </mat-grid-tile>
+    </mat-grid-list>
+</div>
