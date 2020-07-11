@@ -1,35 +1,40 @@
-<div fxFlex="40">
-        <mat-card style="margin: 5%;">
+<div fxFlex="35" style="width: 400px;height: 300px;margin-left:30%;">
+        <mat-card style="margin: 5%;background-color:cornsilk">
           <mat-card-header>
-            <mat-card-title >
+            <mat-card-title style="font-weight: bold;">
               {{product.title}}
             </mat-card-title>
           </mat-card-header>
-          <img height="500px" mat-card-image src="../../assets/images/{{product.filename}}" alt="../../assets/images/{{product.filename}}">
+          <img height="400px" width="100px" mat-card-image src="../../assets/images/{{product.filename}}" alt="../../assets/images/{{product.filename}}">
           <mat-card-content>
-            <p>{{product.description}}
-            </p>
-            <p *ngIf="!product.avail" style="font-weight: bold;color: red;">Product Not Available</p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button color="accent" [routerLink]="['/home']"> BACK </button>
-            <div [ngSwitch]="product.avail" style="margin-top: 10px;margin-bottom: 10px;">
-                <div *ngSwitchCase="true">
-                  <button mat-raised-button color="accent" (click)="addToCart(product.id)"> Add To Cart </button>
-                </div>
-                <div *ngSwitchCase="false">
-                  <button mat-raised-button color="accent" disabled> Add To Cart </button>
-                </div>
+            <p style="text-align: center;font-weight: bold;">PRICE: {{product.price | currency}}</p>
+            <p style="font-weight: bold;text-align: center;">{{product.description}}</p>
+            <p style="text-align: center;font-weight: bold;">Rating: {{product.rating}}</p>
+            <div style="text-align: center;font-weight: bold;">
+              <p *ngIf="!product.avail; else elseBlock" style="font-weight: bold;color: red;text-align: center;">Product Not Available</p>
+              <ng-template #elseBlock>Product Available</ng-template>
             </div>
-            <mat-form-field appearance="fill">
-              <mat-label>Quantity</mat-label>
-              <mat-select [(value)]="selected">
-                <mat-option value="1">1</mat-option>
-                <mat-option value="2">2</mat-option>
-                <mat-option value="3">3</mat-option>
-                <mat-option value="4">4</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </mat-card-actions>
+          </mat-card-content>
         </mat-card>
+        <mat-card-actions style="margin: 5%;text-align: center;">
+          <mat-form-field appearance="fill">
+            <mat-label>Quantity</mat-label>
+            <mat-select [(value)]="selected">
+              <mat-option value="1">1</mat-option>
+              <mat-option value="2">2</mat-option>
+              <mat-option value="3">3</mat-option>
+              <mat-option value="4">4</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div [ngSwitch]="product.avail" style="margin-top: 10px;margin-bottom: 10px;">
+              <div *ngSwitchCase="true">
+                <button mat-raised-button color="accent" [routerLink]="['/home']"> BACK </button>
+                <button mat-raised-button color="accent" (click)="addToCart(product.id)"> Add To Cart </button>
+              </div>
+              <div *ngSwitchCase="false">
+                <button mat-raised-button color="accent" [routerLink]="['/home']"> BACK </button>
+                <button mat-raised-button color="accent" disabled> Add To Cart </button>
+              </div>
+          </div>
+        </mat-card-actions>
 </div>

@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit {
-  selected=1;
+  selected="1";
   product:Product;
   constructor(private productsService:ProductsService,private route:ActivatedRoute,private snackBar:MatSnackBar) { }
 
@@ -21,7 +21,7 @@ export class DetailComponent implements OnInit {
   }
 
   addToCart(id) {
-    this.product.Quantity=this.selected;
+    this.product.Quantity=parseInt(this.selected);
     if(Cart.length===0){
       Cart.push(this.product)
       this.snackBar.open(this.product.title + ' Added To Cart', 'OK', {
@@ -33,18 +33,17 @@ export class DetailComponent implements OnInit {
       for(let i=0;i<Cart.length;i++){
         if(Cart[i].id===id){
           f=1;
-          Cart[i].Quantity=this.product.Quantity;
-          this.snackBar.open('Quantity is updated', 'OK', {
+          this.snackBar.open('Already in the cart', 'OK', {
             duration: 3000,
           });
           break;
         }
-        if(f===0){
-          Cart.push(this.product);
-          this.snackBar.open(this.product.title + ' Added To Cart', 'OK', {
-            duration: 3000,
-          });
-        }
+      }
+      if(f===0){
+        Cart.push(this.product);
+        this.snackBar.open(this.product.title + ' Added To Cart', 'OK', {
+          duration: 3000,
+        });
       }
     }
   }

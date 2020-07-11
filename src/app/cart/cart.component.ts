@@ -39,10 +39,10 @@ export class CartComponent implements OnInit {
         this.cart.splice(i,1);
       }
     }
-    this.router.navigate(['home']);
+    this.router.navigate(['view']);
   }
   deleteAll(){
-    this.cart.splice(0,this.cart.length);
-    this.router.navigate(['home']);
+    this.cart.splice(0,this.cart.length)
+    this.router.navigate(['view']);
   }
 }

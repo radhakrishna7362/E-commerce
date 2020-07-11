@@ -24,6 +24,7 @@ import {ProductsService} from './services/products.service';
 import { DetailComponent } from './detail/detail.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import { ViewComponent } from './view/view.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {MatTableModule} from '@angular/material/table';
     CartComponent,
     HomeComponent,
     DetailComponent,
+    ViewComponent,
   ],
   imports: [
     BrowserModule,
